@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>AT LUST LOUNGE ADDIS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #302c23; /* Dark Golden color */
+            color: #fff;
+        }
+
+        .header {
+          background-color: #343a40;
+          color: white;
+          padding: 5rem 0;
+          text-align: center;
+        }
+
+        nav {
+          background-color: #343a40;
+          color: white;
+          padding: 0.5rem 0;
+        }
+
+        nav a {
+          color: white;
+          text-decoration: none;
+          padding: 1rem;
+        }
+
+        nav a:hover {
+          text-decoration: underline;
+        }
+
+        .container {
+          margin-top: 2rem;
+        }
+
+        .about us {
+          background-color: #f8f9fa;
+          padding: 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: #555; /* Darker color on hover for contrast */
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .product-gallery {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product-gallery img {
+            width: 60%;
+            border-radius: 24px;
+        }
+
+        footer {
+            background-color: #444; /* Darker color for footer */
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .opening-hours,
+        .address,
+        .social-media {
+            flex: 1;
+            text-align: center;
+        }
+
+        .social-media a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: #444; /* Darker color for mobile menu */
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .menu-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AT LUST LOUNGE ADDIS</h1>
+  <p>Welcome to AT LUST LOUNGE ADDIS, where you experience the best VIBE of your life</p>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="channel_lounge.html" href="AT LUST LOUNGE ADDIS.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="product.html">Product Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="reservation.html" href="reservation.html">Reservation</a>
+      </li>
+      <li class="nav-item">
+        <a class="" href="booking.html">Booking</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Event</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Recruitment</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="main-content">
+    <div class="container">
+        <h2>Book a Table</h2>
+        <h5>Celebrate your special moments with us.</h5>
+        <div class="fakeimg">Fake Image</div>
+        <!-- Add your booking form here -->
+        <form id="bookingForm">
+            <!-- Include form fields for user input (e.g., date, time, number of guests, etc.) -->
+            <div>
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div>
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <div>
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" name="guests" min="1" required>
+            </div>
+
+            <!-- Add more form fields as needed -->
+
+            <div id="paymentSection">
+                <h3>Payment Details</h3>
+                <label for="card-element">
+                    Card details
+                </label>
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+
+                <!-- Used to display form errors. -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+
+            <button type="button" id="submitBooking">Submit Booking</button>
+        </form>
+    </div>
+</section>
+
+<!-- Include your footer here -->
+
+<script>
+    var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+    var elements = stripe.elements();
+
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    var form = document.getElementById('bookingForm');
+    var submitButton = document.getElementById('submitBooking');
+
+    submitButton.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        stripe.createToken(card).then(function (result) {
+            if (result.error) {
+                // Inform the user if there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server.
+                // You can add an AJAX request here to send the token to your server for payment processing.
+                console.log(result.token);
+                alert('Booking Successful! Payment processed.');
+                form.submit();
+            }
+        });
+    });
+</script>
+
+    <footer>
+        <div class="container">
+            <div class="opening-hours">
+                <h3>Opening Hours</h3>
+                <p>Sunday to Thursday: 10:00 AM - 11:30 PM</p>
+                <p>Friday & Saturday: 10:00 AM - 1:00 AM</p>
+            </div>
+            <div class="address">
+                <h3>Visit Us - Our Address</h3>
+                <p>AT LUST LOUNGE ADDIS</p>
+                <p>Addis ababa in front of Medhanialem church</p>
+            </div>
+            <div class="social-media">
+                <h3>Connect with Us</h3>
+                <!-- Updated social media links -->
+                <a href="https://www.facebook.com/yourrestaurant" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="https://www.twitter.com/yourrestaurant" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/yourrestaurant" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('change', function() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show', this.checked);
+        });
+    </script>
+
+</body>
+</html>
